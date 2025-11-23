@@ -1,3 +1,5 @@
+import logger from '../utils/logger.js';
+
 const parseJob = (rawJob, feedName) => {
     try {
         // Normalize externalId (try multiple possible field names)
@@ -62,7 +64,7 @@ const parseJob = (rawJob, feedName) => {
             location: String(location).trim()
         };
     } catch (error) {
-        console.error(`Error parsing job from ${feedName}:`, error.message);
+        logger.error(`Error parsing job from ${feedName}:`, error.message);
         return null;
     }
 };

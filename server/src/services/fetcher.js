@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
+import logger from '../utils/logger.js';
 
 const fetchFeed = async (feedUrl, feedType = null) => {
     try {
@@ -32,7 +33,7 @@ const fetchFeed = async (feedUrl, feedType = null) => {
         // Already JSON, return as-is
         return data;
     } catch (error) {
-        console.error(`Error fetching feed ${feedUrl}:`, error.message);
+        logger.error(`Error fetching feed ${feedUrl}:`, error.message);
         throw error;
     }
 };

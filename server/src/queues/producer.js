@@ -1,9 +1,10 @@
 import jobQueue from './job.js';
+import logger from '../utils/logger.js';
 
 const addJobsToQueue = async (normalizedJobs) => {
     try {
         if (!normalizedJobs || normalizedJobs.length === 0) {
-            console.log('No jobs to add to queue');
+            logger.warn('No jobs to add to queue');
             return [];
         }
 
@@ -22,10 +23,10 @@ const addJobsToQueue = async (normalizedJobs) => {
         // Wait for all jobs to be added
         const addedJobs = await Promise.all(jobPromises);
         
-        console.log(`Added ${addedJobs.length} jobs to queue`);
+        logger.success(`Added ${addedJobs.length} jobs to queue`);
         return addedJobs;
     } catch (error) {
-        console.error('Error adding jobs to queue:', error.message);
+        logger.error('Error adding jobs to queue:', error.message);
         throw error;
     }
 };
